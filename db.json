@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ankita Palekar",
+      "user_name": "Ankita-Palekar",
+      "email": "453ankitapalekar@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "user_name": "John-Doe",
+      "email": "johndoe@gmail.com",
+      "password": "password"
+    }
+  ]
+}
