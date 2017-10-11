@@ -5,14 +5,16 @@
       "name": "Ankita Palekar",
       "user_name": "Ankita-Palekar",
       "email": "453ankitapalekar@gmail.com",
-      "password": "password"
+      "password": "password",
+      "isLoggedI": false
     },
     {
       "id": 2,
       "name": "John Doe",
       "user_name": "John-Doe",
       "email": "johndoe@gmail.com",
-      "password": "password"
+      "password": "password",
+      "isLoggedIn": false
     }
   ]
 }
