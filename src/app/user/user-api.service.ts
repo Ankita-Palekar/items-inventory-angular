@@ -19,6 +19,10 @@ export class UserApiService {
     return this.http.get(API_URL + '/users').map(response => response.json()).catch(this.handleError);
   }
 
+  public getUser(id: number): Observable<User>{
+    return this.http.get(API_URL + '/users/' +id).map(response => response.json()).catch(this.handleError);
+  }
+
   private handleError(error: Response | any) {
     return Observable.throw(error);
   }
