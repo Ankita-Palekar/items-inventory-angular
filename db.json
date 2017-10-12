@@ -15,6 +15,22 @@
       "email": "johndoe@gmail.com",
       "password": "password",
       "isLoggedIn": false
+    },
+    {
+      "id": 2,
+      "name": "Ankush Palekar",
+      "user_name": "Ankush-Palekar",
+      "email": "ankushpalekar@gmail.com",
+      "password": "password",
+      "isLoggedIn": false
+    },
+    {
+      "id": 2,
+      "name": "Kitto",
+      "user_name": "kitto",
+      "email": "kitto@gmail.com",
+      "password": "password",
+      "isLoggedIn": false
     }
   ]
 }

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../user.service';
+import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import {User} from '../user';
 
 @Component({
   selector: 'app-user-details',
@@ -6,10 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  user: User;
 
-  constructor() { }
+  constructor(private userService: UserService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+      console.log('here');
+      // this.userService.getUser();
   }
 
 }
