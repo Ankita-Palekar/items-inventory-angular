@@ -7,8 +7,9 @@ import {User} from "./user";
 export class UserService {
 
   isUserLoggedIn: boolean;
-  userAuthenticated: boolean;
-  users : User[];
+  userAuthenticated?: boolean = false;
+  users: User[];
+
   constructor(private userApi: UserApiService) {
   }
 
@@ -20,18 +21,25 @@ export class UserService {
     return this.userApi.getUser(id);
   }
 
-  authenticateUser(userName: string, password: string): any {
-    this.userApi.getAllUsers().subscribe(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (userName === response[i].user_name && password === response[i].password) {
-          this.userAuthenticated = true;
-        }
-      }
-      return this.userAuthenticated;
-    });
-  }
+  // authenticateUser(userName: string, password: string): boolean {
+  //   this.userApi.getAllUsers().subscribe(response => {
+  //     for (let i = 0; i < response.length; i++) {
+  //       if (userName == response[i].user_name && password == response[i].password) {
+  //         console.log("I am here");
+  //         this.userAuthenticated = true;
+  //       }
+  //     }
+  //   });
+  //
+  //   console.log('before seconds');
+  //   setTimeout(() => {
+  //   }, 5000);
+  //   console.log('after seconds call');
+  //   return this.userAuthenticated;
+  // }
 
   loginUser(user: User): any {
+    console.log(user);
     user.isLoggedIn = true;
     const updatedRecord: Observable<User> = this.userApi.updateUser(user);
     updatedRecord.subscribe(updatedUser => {

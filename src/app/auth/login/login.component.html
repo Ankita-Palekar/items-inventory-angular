@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="!loginSuccessful">
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <form (ngSubmit)="onLogin()" #loginForm="ngForm">
@@ -14,5 +14,13 @@
     </form>
   </div>
 </div>
+
+<div class="row" *ngIf="loginSuccessful">
+  <div class="col-md-12">
+    <span class="alert alert-success"> Successfully logged in </span>
+  </div>
+</div>
+
+
 
 
