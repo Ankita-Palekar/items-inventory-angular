@@ -18,14 +18,8 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.users = this.route.paramMap.switchMap((params: ParamMap) => {
-    //   console.log(params);
-    //   return this.service.getAllUsers();
-    // });
     return this.service.getAllUsers().subscribe(response => {
-      console.log(response)
       this.users = response;
     });
   }
-
 }

@@ -13,7 +13,7 @@ export class UserService {
     return this.userApi.getAllUsers();
   }
 
-  getUser(id: number): Observable<User>{
+  getUser(id: number | string): Observable<User>{
     return this.userApi.getUser(id);
   }
 }

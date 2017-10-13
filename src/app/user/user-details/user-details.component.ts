@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
-import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
 import {User} from '../user';
+import 'rxjs/add/operator/switchMap';
+import {Observable} from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-user-details',
@@ -13,12 +14,14 @@ import {User} from '../user';
 export class UserDetailsComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private service: UserService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-      console.log('here');
-      // this.userService.getUser();
+    const ser: Observable<User> = this.route.paramMap.switchMap((params: ParamMap) => (this.service.getUser(params.get('id'))));
+    ser.subscribe(response => {
+      this.user = response;
+    });
   }
 
 }

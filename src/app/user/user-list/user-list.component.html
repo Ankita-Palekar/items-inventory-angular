@@ -6,17 +6,13 @@
         <th>id</th>
         <th>name</th>
         <th>User name</th>
-        <!--<th>email</th>-->
-        <!--<th>isLoggedIn</th>-->
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users"    routerLink="{{user.id}}"  routerLinkActive="active">
         <td>{{user.id}}</td>
         <td>{{user.name}}</td>
         <td>{{user.user_name}}</td>
-        <!--<td>{{user.email}}</td>-->
-        <!--<td>{{user.isLoggedIn}}</td>-->
       </tr>
       </tbody>
     </table>
