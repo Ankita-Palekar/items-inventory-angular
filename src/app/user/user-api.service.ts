@@ -23,6 +23,10 @@ export class UserApiService {
     return this.http.get(API_URL + '/users/' + id).map(response => response.json()).catch(this.handleError);
   }
 
+  public updateUser(user: User): Observable<User> {
+    return this.http.put(API_URL + '/users' + user.id, user).map(response => response.json()).catch(this.handleError);
+  }
+
   private handleError(error: Response | any) {
     return Observable.throw(error);
   }
