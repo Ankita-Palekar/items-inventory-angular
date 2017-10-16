@@ -39,7 +39,6 @@ export class UserService {
   // }
 
   loginUser(user: User): any {
-    console.log(user);
     user.isLoggedIn = true;
     const updatedRecord: Observable<User> = this.userApi.updateUser(user);
     updatedRecord.subscribe(updatedUser => {

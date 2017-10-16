@@ -7,9 +7,13 @@ import {User} from '../user/user';
 export class AuthService {
 
   constructor(private userService: UserService) {
+    console.log('was here');
   }
 
   login(user: User) {
+    console.log('logged in user');
+    console.log(this.userService.loginUser(user));
+    // return this.userService.loginUser(user);
     return this.userService.loginUser(user);
   }
 

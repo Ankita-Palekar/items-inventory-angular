@@ -24,7 +24,7 @@ export class UserApiService {
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.http.put(API_URL + '/users' + user.id, user).map(response => response.json()).catch(this.handleError);
+    return this.http.put(API_URL + '/users/' + user.id, user).map(response => response.json()).catch(this.handleError);
   }
 
   private handleError(error: Response | any) {
