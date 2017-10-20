@@ -6,15 +6,18 @@ import {User} from '../user/user';
 @Injectable()
 export class AuthService {
 
+  isLoggedIn = false;
+
   constructor(private userService: UserService) {
-    console.log('was here');
   }
 
   login(user: User) {
-    console.log('logged in user');
-    console.log(this.userService.loginUser(user));
-    // return this.userService.loginUser(user);
     return this.userService.loginUser(user);
+  }
+
+  checkLoggedIn() {
+    JSON.parse(localStorage.getItem('loggedInUser')) ;
+    return this.isLoggedIn;
   }
 
   logout(user: User) {

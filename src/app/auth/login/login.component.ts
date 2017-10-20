@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../user/user.service";
+import {UserService} from '../../user/user.service';
 import {timeout} from 'q';
+import {AuthService} from '../auth.service';
+import {User} from '../../user/user';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +13,10 @@ export class LoginComponent implements OnInit {
 
   userName: string;
   password: string;
-  loginSuccessful: boolean = false;
+  loggedInUser: User;
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private authService: AuthService) {
   }
 
 
@@ -23,18 +25,23 @@ export class LoginComponent implements OnInit {
   }
 
   private authenticateUser(userName: string, password: string) {
-    this.userService.getAllUsers().subscribe(users => {
-      for (let i = 0; i < users.length; i++) {
-        if (userName == users[i].user_name && password == users[i].password) {
-          this.loginSuccessful = true;
-          this.userService.loginUser(users[i]);
+    if (!this.authService.isLoggedIn) {
+      this.userService.getAllUsers().subscribe(users => {
+        for (let i = 0; i < users.length; i++) {
+          if (userName == users[i].user_name && password == users[i].password) {
+            this.authService.login(users[i]);
+            this.loggedInUser = users[i];
+            break;
+          }
         }
-      }
-    });
+      });
+    } else {
+      console.log('user is already logged in');
+    }
   }
 
   onLogin() {
-     this.authenticateUser(this.userName, this.password);
+    this.authenticateUser(this.userName, this.password);
   }
 
 

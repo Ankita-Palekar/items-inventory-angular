@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {UserApiService} from './user-api.service';
-import {Observable} from "rxjs/Observable";
-import {User} from "./user";
+import {Observable} from 'rxjs/Observable';
+import {User} from './user';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
 
-  isUserLoggedIn: boolean;
   userAuthenticated?: boolean = false;
   users: User[];
 
@@ -42,17 +42,20 @@ export class UserService {
     user.isLoggedIn = true;
     const updatedRecord: Observable<User> = this.userApi.updateUser(user);
     updatedRecord.subscribe(updatedUser => {
-      this.isUserLoggedIn = updatedUser.isLoggedIn;
+      this.userAuthenticated = updatedUser.isLoggedIn;
     });
-    return this.isUserLoggedIn;
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    return this.userAuthenticated;
   }
 
   logOutUser(user: User): boolean {
     user.isLoggedIn = false;
+    let returnUser: User;
     const updatedRecord: Observable<User> = this.userApi.updateUser(user);
     updatedRecord.subscribe(updatedUser => {
-      this.isUserLoggedIn = updatedUser.isLoggedIn;
+      returnUser = updatedUser;
     });
-    return this.isUserLoggedIn;
+    localStorage.removeItem('loggedInUser');
+    return returnUser.isLoggedIn;
   }
 }
