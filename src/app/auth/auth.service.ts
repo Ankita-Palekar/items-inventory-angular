@@ -9,6 +9,12 @@ export class AuthService {
   isLoggedIn = false;
 
   constructor(private userService: UserService) {
+    let user = this.getLoggedInUser();
+    this.isLoggedIn = user ? user.isLoggedIn : !!user;
+  }
+
+  getLoggedInUser() {
+    return JSON.parse(localStorage.getItem('loggedInUser'));
   }
 
   login(user: User) {
@@ -16,11 +22,12 @@ export class AuthService {
   }
 
   checkLoggedIn() {
-    JSON.parse(localStorage.getItem('loggedInUser')) ;
+    JSON.parse(localStorage.getItem('loggedInUser'));
     return this.isLoggedIn;
   }
 
   logout(user: User) {
+    this.isLoggedIn = false;
     return this.userService.logOutUser(user);
   }
 

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserApiService} from './user-api.service';
 import {Observable} from 'rxjs/Observable';
 import {User} from './user';
-import {AuthService} from '../auth/auth.service';
+
 
 @Injectable()
 export class UserService {
@@ -53,9 +53,9 @@ export class UserService {
     let returnUser: User;
     const updatedRecord: Observable<User> = this.userApi.updateUser(user);
     updatedRecord.subscribe(updatedUser => {
-      returnUser = updatedUser;
+      this.userAuthenticated = updatedUser.isLoggedIn;
     });
     localStorage.removeItem('loggedInUser');
-    return returnUser.isLoggedIn;
+    return this.userAuthenticated;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {UserService} from '../../user/user.service';
 import {timeout} from 'q';
 import {AuthService} from '../auth.service';
@@ -9,22 +9,22 @@ import {User} from '../../user/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
 
   userName: string;
   password: string;
   loggedInUser: User;
 
-
   constructor(private userService: UserService, private authService: AuthService) {
+
   }
 
-
   ngOnInit() {
-
+    this.loggedInUser = this.authService.getLoggedInUser();
   }
 
   private authenticateUser(userName: string, password: string) {
+    console.log(this.authService.isLoggedIn);
     if (!this.authService.isLoggedIn) {
       this.userService.getAllUsers().subscribe(users => {
         for (let i = 0; i < users.length; i++) {
@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit {
           }
         }
       });
-    } else {
-      console.log('user is already logged in');
     }
   }
 

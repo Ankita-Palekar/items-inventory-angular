@@ -1,0 +1,6 @@
+<div class="row">
+  <div class="col-md-12">
+    <a class="btn-link btn btn-primary" *ngIf="loggedInUser" routerLink="/logout" routerLinkActive="active" ="onLogOut()">logout</a>
+    <a class="btn-link btn btn-primary" *ngIf="!loggedInUser" routerLink="/login" routerLinkActive="active">login</a>
+  </div>
+</div>
